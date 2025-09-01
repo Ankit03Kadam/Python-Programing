@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+    <link rel="stylesheet" href="output.css">
+</head>
+<body class="flex items-center justify-center h-screen">
+    <div id="container" class="h-full w-full flex items-center justify-center bg-blue-800">
+        <div id="calbody" class="p-3 h-88 w-[270px] border-2  shadow-2xl rounded-md bg-gray-500">
+        
+            <form>
+                <input type="text" id="display" class="m-1 h-10 w-[230px] text-2xl ">
+                <br>
+                <input type="button" value="7" onclick="addChar('7')" class="m-3 h-8 w-8 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="8" onclick="addChar('8')" class="m-3 h-8 w-8 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="9" onclick="addChar('9')" class="m-3 h-8 w-8 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="/" onclick="addChar('/')" class="m-3 h-8 w-8 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <br>
+                <input type="button" value="4" onclick="addChar('4')" class="m-3 h-8 w-8 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="5" onclick="addChar('5')" class="m-3 h-8 w-8 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="6" onclick="addChar('6')" class="m-3 h-8 w-8 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="*" onclick="addChar('*')" class="m-3 h-8 w-8 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <br>
+                <input type="button" value="1" onclick="addChar('1')" class="m-3 h-8 w-8 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="2" onclick="addChar('2')" class="m-3 h-8 w-8 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="3" onclick="addChar('3')" class="m-3 h-8 w-8 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="-" onclick="addChar('-')" class="m-3 h-8 w-8 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <br>
+                <input type="button" value="(" onclick="addChar('(')" class="m-3 h-8 w-8 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="0" onclick="addChar('0')" class="m-3 h-8 w-8 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value=")" onclick="addChar(')')" class="m-3 h-8 w-8 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="+" onclick="addChar('+')" class="m-3 h-8 w-8 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <br>
+                <input type="button" value="C" onclick="clearDisplay()" class="m-3 h-8 w-8 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="Del" onclick="dlt()" class="m-3 h-8 w-8 text-2lg text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="." onclick="addChar('.')" class="m-3 h-8 w-8 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="=" onclick="calculate()" class="m-3 h-8 w-8 text-2xl text-center cursor-pointer bg-orange-400 rounded-sm">
+                <br>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+<script>
+const display = document.querySelector("#display");
+function addChar(char){
+    display.value += char
+}
+function calculate(){
+    let result = eval(display.value);
+    clearDisplay();
+    display.value=result;
+}
+
+function dlt(){
+    display.value=display.value.slice(0, -1);
+}
+
+function clearDisplay(){
+    display.value = ""
+}
+
+</script>
+</body>
+</html>

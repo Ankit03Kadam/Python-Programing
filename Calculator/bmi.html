@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI</title>
+    <link rel="stylesheet" href="output.css">
+</head>
+<body class="flex items-center justify-center h-screen">
+    <div  id="container" class="h-full w-full flex items-center justify-center bg-blue-600">
+      <div id="bmibody" class="flex flex-col p-3 h-[400px] w-[500px] gap-3 border-4 border-blue-800 rounded-md bg-gray-300">
+           <div class="text-xl">
+            <label for="display">Height (in cm):</label>
+            <input type="text" id="height">
+           </div>
+           <div class="text-xl">
+            <label for="display">Weight (in kg):</label>
+            <input type="text" id="weight">
+           </div>
+            
+           <input type="button" onclick="bmicalculate()" cursor="pointer" value="Calculate" class="m-1 p-1 h-8 w-13 text-xl text-center rounded-md bg-blue-300">
+           <input type="button" onclick="clr()" cursor="pointer" value="Clear" class="m-1 p-1 h-8 w-13 text-xl text-center rounded-md bg-blue-300">
+           <div  class="text-2xl ">BMI is :<p id="mypara"></p></div>
+           <div id="summary" class="text-2xl ">
+
+           </div>
+      </div>
+    </div>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    const height=document.querySelector('#height')
+    const weight=document.querySelector('#weight')
+    const p=document.querySelector('#mypara')
+    let summary=document.querySelector('#summary')
+    console.log(p)
+function bmicalculate(){
+      let height_value = height.value * 0.01;
+      let bmi = weight.value/(height_value*height_value);
+      bmi=bmi.toFixed(1)
+      p.innerHTML=bmi;
+      if(bmi>0 && bmi<=18.5){
+        summary.innerHTML="You are UnderWeight"
+      }
+      else if(bmi>18.5 && bmi<=25){
+        summary.innerHTML="Your Weight is Normal"
+      }
+      else if(bmi>25 && bmi<30){
+        summary.innerHTML="You are OverWeight"
+      }
+      else{
+        summary.innerHTML="You are obese"
+      }
+    }
+
+function clr(){
+    height.value=""
+    weight.value=""
+    output.innerHTML=""
+}
+</script>
+</body>
+
+</html>

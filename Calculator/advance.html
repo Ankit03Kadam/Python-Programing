@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advance calculator</title>
+    <link rel="stylesheet" href="output.css">
+</head>
+<body class="flex items-center justify-center h-screen">
+    <div id="container" class="h-full w-full flex items-center justify-center bg-blue-800">
+        <div id="calbody" class="p-3 h-88 w-[370px] border-4 border-blue-400 rounded-md bg-gray-500">
+            <form>
+                <input type="text" maxlength="25" id="display" class="m-1 h-12 w-[330px] text-2xl border-2 border-black">
+                <br>
+                <input type="button" value="c" onclick="clearDisplay()" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="<--" onclick="dlt()" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="=" onclick="calculate()" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-green-600 rounded-sm">
+                <input type="button" value='&#960' onclick="addChar('3.14')"class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="mod" onclick="addChar('%')" class="m-3 h-8 w-10 text-2lg text-center cursor-pointer bg-white rounded-sm">
+                <br>
+                <input type="button" value="7" onclick="addChar('7')" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="8" onclick="addChar('8')" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="9" onclick="addChar('9')" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="n!" onclick="fact()" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="/" onclick="addChar('/')" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <br>
+                <input type="button" value="4" onclick="addChar('4')" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="5" onclick="addChar('5')"class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="6" onclick="addChar('6')"class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="ln" onclick="log()" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="*" onclick="addChar('*')" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <br>
+                <input type="button" value="1" onclick="addChar('1')" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="2" onclick="addChar('2')" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="3" onclick="addChar('3')" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="&#8730" onclick="sqrroot()" class="m-3 h-8 w-10 text-3lg text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="-" onclick="addChar('-')" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <br>
+                <input type="button" value="(" onclick="addChar('(')"class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="0" onclick="addChar('0')" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value=")" onclick="addChar(')')" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="x&#178" onclick="power()"class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="+" onclick="addChar('+')" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <br>
+                <input type="button" value='10&#739' onclick="XPower10()" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="." onclick="addChar('.')" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="cos" onclick="Cos()"class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="sin" onclick="Sin()" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+                <input type="button" value="tan" onclick="Tan()" class="m-3 h-8 w-10 text-2xl text-center cursor-pointer bg-white rounded-sm">
+
+            </form>
+        
+        </div>
+    </div>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+        
+const display = document.querySelector("#display")
+function addChar(char) {
+      display.value += char; 
+    }
+function calculate(){
+    let result = eval(`${display.value}`);
+    clearDisplay();
+    display.value = result;
+}
+
+function degreesToRadians(degrees) {
+    console.log(`degrees:${degrees}`)
+  return degrees * (Math.PI / 180);
+}
+
+function extractinput(){
+    const str =display.value
+    console.log(str)
+    const chars = ['+', '-', '*','/']
+    const anyExist = chars.some(char => str.includes(char));
+    console.log(anyExist);
+    if(anyExist){
+        const revstr=display.value.split('').reverse().join('');
+        const lastop = getLastOp();
+        console.log(`lastChars:${lastop}`);
+        let charKebaad = revstr.substring(0, revstr.indexOf(lastop));
+        charKebaad=charKebaad.split('').reverse().join('');
+        console.log(`charkebaad:${charKebaad}`);
+        let charKepehle = str.substring(0, str.indexOf(lastop));
+        console.log(`charkepehle:${charKepehle}`);
+        
+        let revresult=(charKebaad).split('').reverse().join('');
+        console.log(`result:${charKebaad}`)
+        return [charKepehle,lastop,charKebaad];
+    }
+    else{
+        return 0;
+    }
+}
+
+function XPower10(){
+     const ip=extractinput();
+     console.log(`extractinput:${ip}`)
+     console.log(`input:${ip[2]}`)
+    if(ip){
+        let power = Math.pow(10,ip[2]);
+        console.log(`power:${power}`)
+        const newstring=ip[0]+ip[1]+power;
+        console.log(`newStirng:${newstring}`)
+        console.log(display.value)
+        clearDisplay()
+        addChar(newstring);
+        
+    }
+    else{
+        let power = Math.pow(10,display.value);
+        clearDisplay();
+        addChar(power);
+    }
+}
+function Tan(){
+    const ip=extractinput();
+    if(ip){
+        let angleInRadians = degreesToRadians(ip[2]);
+        let tan = Math.tan(angleInRadians);
+        const newstring=ip[0]+ip[1]+tan;
+        console.log(`newStirng:${newstring}`)
+        console.log(display.value)
+        clearDisplay()
+        addChar(newstring);
+        
+    }
+    else{
+        console.log(display.value)
+        let angleInRadians = degreesToRadians(display.value);
+        console.log(`angleInRadians:${angleInRadians}`)
+        let tan = Math.tan(angleInRadians);
+        clearDisplay();
+        if(tan===0.9999999999999999){
+            tan=1
+        }
+        else if(tan===16331239353195370 || tan===5443746451065123){
+            tan='Infinity'
+        }
+        else if(tan===-1.2246467991473532e-16 || tan===-2.4492935982947064e-16){
+            tan=0
+        }
+        addChar(tan);
+    }
+}
+function Cos(){
+    const ip=extractinput();
+    if(ip){
+        let angleInRadians = degreesToRadians(ip[2]);
+        let cos = Math.cos(angleInRadians);
+        const newstring=ip[0]+ip[1]+cos;
+        console.log(`newStirng:${newstring}`)
+        console.log(display.value)
+        clearDisplay()
+        addChar(newstring);
+        
+    }
+    else{
+        let angleInRadians = degreesToRadians(display.value);
+        let cos = Math.cos(angleInRadians);
+        clearDisplay();
+        if(cos===6.123233995736766e-17 || cos===-1.8369701987210297e-16){
+            cos=0
+        }
+        addChar(cos);
+    }
+}
+function Sin(){
+    const ip=extractinput();
+    if(ip){
+        let angleInRadians = degreesToRadians(ip[2]);
+        let sin = Math.sin(angleInRadians);
+        const newstring=ip[0]+ip[1]+sin;
+        console.log(`newStirng:${newstring}`)
+        console.log(display.value)
+        clearDisplay()
+        addChar(newstring);
+        
+    }
+    else{
+        let angleInRadians = degreesToRadians(display.value);
+        let sin = Math.sin(angleInRadians);
+        if(sin=== 1.2246467991473532e-16 || sin===-2.4492935982947064e-16){
+            sin=0
+        }
+        clearDisplay();
+        addChar(sin);
+    }
+}
+function getLastOp(){
+    const revstr=display.value.split('').reverse().join('');
+    for(let i=0;i<revstr.length;i++){
+        if('+'=== revstr[i]){
+            return '+';
+        }
+         if('-'=== revstr[i]){
+            return '-';
+        }
+         if('*'=== revstr[i]){
+            return '*';
+        }
+         if('/'=== revstr[i]){
+            return '/';
+        }
+    }
+}
+function factorial(n){
+    if(n==1){
+        return 1;
+    }
+    else{
+        return n*factorial(n-1);
+    }
+}
+function fact(){
+    const ip=extractinput();
+    if(ip){
+        let result = factorial(ip[2]);    
+        const newstring=ip[0]+ip[1]+result;
+        clearDisplay();
+        addChar(newstring);
+    }
+    else{
+        let result=factorial(display.value);
+        clearDisplay();
+        addChar(result);
+    }
+}
+function sqrroot(){
+    const ip=extractinput();
+    if(ip){
+        let result = Math.sqrt(ip[2]);
+        const newstring=ip[0]+ip[1]+result;
+        clearDisplay();
+        addChar(newstring);
+    }
+    else{
+        let result = Math.sqrt(display.value);
+        clearDisplay();
+        addChar(result);
+    }
+
+}
+function log(){
+    const ip=extractinput();
+    console.log(`extractinput:${ip}`)
+    if(ip){
+        let log = Math.log(ip[2]);
+        console.log(`display.value:${display.value}`)
+        const newstring=ip[0]+ip[1]+log;
+        clearDisplay();
+        addChar(newstring);
+        
+    }
+    else{
+        let log = Math.log(display.value);
+        display.value='';
+        addChar(log);
+    }
+
+}
+function power(){
+    const ip=extractinput();
+     console.log(`extractinput:${ip}`)
+     console.log(`input:${ip[2]}`)
+    if(ip){
+        let power = Math.pow(ip[2], 2);
+        console.log(`power:${power}`)
+        const newstring=ip[0]+ip[1]+power;
+        console.log(`newStirng:${newstring}`)
+        console.log(display.value)
+        clearDisplay()
+        addChar(newstring);
+        
+    }
+    else{
+        let power = Math.pow(display.value, 2);
+        clearDisplay();
+        addChar(power);
+    }
+   
+
+}
+function dlt(){
+    if(display.value==="Infinity"){
+        clearDisplay()
+    }
+    else{
+    display.value=display.value.slice(0, -1)
+    }
+}
+
+function clearDisplay()
+{
+    display.value="";
+}
+</script>
+</body>
+</html>
